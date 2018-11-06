@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	
 	footer_t *footer;
 	footer=(footer_t*)malloc(SIZE_FOOTER);
-	load2buffer((u8*)footer, SIZE_FOOTER, "footer.bin");
+	load2buffer((u8*)footer, SIZE_FOOTER, "/footer.bin");
 	uint8_t ct_priv[0x1e];
 	uint8_t ctcert_bin[0x19e];
 	uint8_t tmp_pub[0x3c];
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 	ap_cert=(ecc_cert_t*)malloc(SIZE_CTCERTBIN);
 
 	printf("loading keys from ctcert.bin...\n");
-	load2buffer(ctcert_bin, SIZE_CTCERTBIN, "ctcert.bin");
+	load2buffer(ctcert_bin, SIZE_CTCERTBIN, "/ctcert.bin");
 	memcpy(ct_cert, ctcert_bin, 0x180);
 	memcpy(ct_priv, ctcert_bin+0x180, 0x1e);
 	
@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
 	memcpy(&footer->ap, ap_cert, 0x180);
 	memcpy(&footer->ct, ct_cert, 0x180);
 	
-	dumpfile((u8*)footer, SIZE_FOOTER, "footer_signed.bin");
+	dumpfile((u8*)footer, SIZE_FOOTER, "/footer_signed.bin");
 	
 	printf("done!\n");
 	
